@@ -143,41 +143,134 @@
 
 // I made changes to the code and made it interactive 05/10/26
 
+// import { useState } from 'react';
+// import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
+
+// export default function App() {
+//   const [name, setName] = useState('');
+
+//   return (
+//     <View style={s.screen}>
+//       <Image
+//         source={{ uri: 'https://i.pinimg.com/474x/5d/a3/60/5da360c98b9af0ad709fe18606992229.jpg' }}
+//         style={s.photo}
+//       />
+
+//       <TextInput
+//         placeholder="Type your name..."
+//         onChangeText={setName}
+//         style={{
+//           height: 40,
+//           margin: 12,
+//           borderWidth: 1,
+//           padding: 10,
+//           width: 200,
+//         }}
+//       />
+
+//       <Text style={s.name}>
+//         Hello, {name}!
+//       </Text>
+//     </View>
+//   );
+// }
+
+// const s = StyleSheet.create({
+//   screen: { flex:1, alignItems:'center', justifyContent:'center', backgroundColor: '#b6cfd3', },
+//   photo: { width:120, height:120, borderRadius:60 },
+//   name: { fontSize:22, fontWeight:'bold', marginTop:12 },
+//   bio: { fontSize:14, color:'#626262' }
+// });
+
+
+//edited the code made it more interactive. 05/11/2026
+
 import { useState } from 'react';
-import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Image, ScrollView, StyleSheet } from 'react-native';
 
 export default function App() {
+
+  // State variables
   const [name, setName] = useState('');
+  const [count, setCount] = useState(0);
+
+  // Message based on counter
+  const message =
+    count > 0
+      ? `${name}, you tapped ${count} times!`
+      : 'Tap the + button to start';
 
   return (
-    <View style={s.screen}>
+    <ScrollView contentContainerStyle={styles.container}>
+      {/* Profile Image */}
       <Image
         source={{ uri: 'https://i.pinimg.com/474x/5d/a3/60/5da360c98b9af0ad709fe18606992229.jpg' }}
-        style={s.photo}
+        style={styles.image}
       />
 
+      {/* Input */}
       <TextInput
-        placeholder="Type your name..."
+        placeholder="Enter your name"
+        placeholderTextColor="#777"
         onChangeText={setName}
-        style={{
-          height: 40,
-          margin: 12,
-          borderWidth: 1,
-          padding: 10,
-          width: 200,
-        }}
+        style={styles.input}
       />
 
-      <Text style={s.name}>
-        Hello, {name}!
+      {/* Greeting */}
+      <Text style={styles.text}>
+        {name === '' ? 'Please enter your name' : `Hello, ${name}!`}
       </Text>
-    </View>
+
+      {/* Counter Message */}
+      <Text style={styles.text}>{message}</Text>
+
+      {/* Buttons */}
+      <View style={styles.buttonContainer}>
+        <Button title="+" onPress={() => setCount(count + 1)} />
+        <Button title="-" onPress={() => setCount(count - 1)} />
+        <Button title="Reset" onPress={() => setCount(0)} />
+      </View>
+
+    </ScrollView>
   );
 }
 
-const s = StyleSheet.create({
-  screen: { flex:1, alignItems:'center', justifyContent:'center', backgroundColor: '#b6cfd3', },
-  photo: { width:120, height:120, borderRadius:60 },
-  name: { fontSize:22, fontWeight:'bold', marginTop:12 },
-  bio: { fontSize:14, color:'#626262' }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#b6cfd3'
+  },
+
+  image: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 20
+  },
+
+  input: {
+    borderWidth: 1,
+    borderColor: '#626262',
+    backgroundColor: '#FFF',
+    color: '#333',
+    width: '80%',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 10
+  },
+
+  text: {
+    fontSize: 16,
+    marginVertical: 5,
+    color: '#000000',
+    fontWeight: 'bold'
+  },
+
+  buttonContainer: {
+    marginTop: 10,
+    width: '60%'
+  }
 });
