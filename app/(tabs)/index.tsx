@@ -115,27 +115,69 @@
 // Added my photo, Added my name, Add your course, short bio and did the requirements. 05/10/2026
 
 
-import { Image } from 'expo-image';
-import { StyleSheet } from 'react-native';
-import { View, Text } from 'react-native';
+// import { Image } from 'expo-image';
+// import { StyleSheet } from 'react-native';
+// import { View, Text } from 'react-native';
+
+// export default function App() {
+//   return (
+//     <View style={s.screen}>
+//       <Image
+//         source={{ uri: 'https://scontent.fdvo1-1.fna.fbcdn.net/v/t39.30808-6/502491868_23976036398694573_2572416048249608135_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGEL3dd7J6MzgPnf6lOIKm31fsGPkHYTXTV-wY-QdhNdDYvxOeF3U-BZlgaPCrqKzwXz5Q93k_S3Yq-V6hZoZGc&_nc_ohc=XOCeTo6tB4QQ7kNvwEYn5k-&_nc_oc=AdpocUsXOy-au8XPwaKwu1HqeNMdGhW3JhqqqZ0xNfHv7gzaQMAitJ6cEoJmOENml64&_nc_zt=23&_nc_ht=scontent.fdvo1-1.fna&_nc_gid=nXCeOCK-hiI25YXBYqu-Fg&_nc_ss=7b2a8&oh=00_Af7ue9PRIJ3-FzQXNMdVscsCuHgQOOa6qDpjSfvL86Vqvw&oe=6A061272' }}
+//         style={s.photo}
+//       />
+
+//       <Text style={s.name}>Jana Marie Vercide</Text>
+//       <Text style={s.bio}>MMA Student - A301 I like Cars and Art</Text>
+//     </View>
+//   );
+// }
+
+// const s = StyleSheet.create({
+//   screen: { flex:1, alignItems:'center', justifyContent:'center', backgroundColor: '#b6cfd3',},
+//   photo: { width:120, height:120, borderRadius:60 },
+//   name: { fontSize:24, fontWeight:'bold', marginTop:12 },
+//   bio: { fontSize:14, color:'#626262' }
+// });
+
+
+// I made changes to the code and made it interactive 05/10/26
+
+import { useState } from 'react';
+import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
 
 export default function App() {
+  const [name, setName] = useState('');
+
   return (
     <View style={s.screen}>
       <Image
-        source={{ uri: 'https://scontent.fdvo1-1.fna.fbcdn.net/v/t39.30808-6/502491868_23976036398694573_2572416048249608135_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGEL3dd7J6MzgPnf6lOIKm31fsGPkHYTXTV-wY-QdhNdDYvxOeF3U-BZlgaPCrqKzwXz5Q93k_S3Yq-V6hZoZGc&_nc_ohc=XOCeTo6tB4QQ7kNvwEYn5k-&_nc_oc=AdpocUsXOy-au8XPwaKwu1HqeNMdGhW3JhqqqZ0xNfHv7gzaQMAitJ6cEoJmOENml64&_nc_zt=23&_nc_ht=scontent.fdvo1-1.fna&_nc_gid=nXCeOCK-hiI25YXBYqu-Fg&_nc_ss=7b2a8&oh=00_Af7ue9PRIJ3-FzQXNMdVscsCuHgQOOa6qDpjSfvL86Vqvw&oe=6A061272' }}
+        source={{ uri: 'https://i.pinimg.com/474x/5d/a3/60/5da360c98b9af0ad709fe18606992229.jpg' }}
         style={s.photo}
       />
 
-      <Text style={s.name}>Jana Marie Vercide</Text>
-      <Text style={s.bio}>MMA Student - A301 I like Cars and Art</Text>
+      <TextInput
+        placeholder="Type your name..."
+        onChangeText={setName}
+        style={{
+          height: 40,
+          margin: 12,
+          borderWidth: 1,
+          padding: 10,
+          width: 200,
+        }}
+      />
+
+      <Text style={s.name}>
+        Hello, {name}!
+      </Text>
     </View>
   );
 }
 
 const s = StyleSheet.create({
-  screen: { flex:1, alignItems:'center', justifyContent:'center', backgroundColor: '#b6cfd3',},
+  screen: { flex:1, alignItems:'center', justifyContent:'center', backgroundColor: '#b6cfd3', },
   photo: { width:120, height:120, borderRadius:60 },
-  name: { fontSize:24, fontWeight:'bold', marginTop:12 },
+  name: { fontSize:22, fontWeight:'bold', marginTop:12 },
   bio: { fontSize:14, color:'#626262' }
 });
